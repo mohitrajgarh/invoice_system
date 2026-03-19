@@ -1,11 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { X, Upload } from "lucide-react";
+import { InvoiceData } from "@/lib/types";
 
-export default function CompanyForm() {
-  const [logo, setLogo] = useState<string | null>(null);
+interface Props {
+  data: InvoiceData;
+  setData: React.Dispatch<React.SetStateAction<InvoiceData>>;
+}
+
+export default function CompanyForm({ data, setData }: Props) {
 
   const handleLogoChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -18,11 +23,24 @@ export default function CompanyForm() {
     }
 
     const url = URL.createObjectURL(file);
-    setLogo(url);
+
+    setData({
+      ...data,
+      company: {
+        ...data.company,
+        logo: url,
+      },
+    });
   };
 
   const removeLogo = () => {
-    setLogo(null);
+    setData({
+      ...data,
+      company: {
+        ...data.company,
+        logo: "",
+      },
+    });
   };
 
   return (
@@ -36,8 +54,8 @@ export default function CompanyForm() {
       </label>
 
       {/* CONDITION BASED UI */}
-      {!logo ? (
-        
+      {!data.company.logo ? (
+
         <label className="w-28 h-28 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-[#3ABBF9] transition mb-4">
           <Upload className="text-[#3ABBF9] mb-1" size={20} />
           <span className="text-xs text-gray-500">Upload</span>
@@ -50,10 +68,10 @@ export default function CompanyForm() {
           />
         </label>
       ) : (
-       
+
         <div className="relative w-fit mb-4">
           <Image
-            src={logo}
+            src={data.company.logo}
             alt="Company Logo"
             width={100}
             height={100}
@@ -73,21 +91,61 @@ export default function CompanyForm() {
       {/* INPUTS */}
       <input
         placeholder="Company Name"
+        value={data.company.name}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              name: e.target.value
+            }
+          })
+        }
         className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
       />
 
       <input
         placeholder="Address"
+        value={data.company.address}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              address: e.target.value
+            }
+          })
+        }
         className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
       />
 
       <input
         placeholder="Email"
+        value={data.company.email}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              email: e.target.value
+            }
+          })
+        }
         className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
       />
 
       <input
         placeholder="Phone"
+        value={data.company.phone}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              phone: e.target.value
+            }
+          })
+        }
         className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
       />
     </div>
