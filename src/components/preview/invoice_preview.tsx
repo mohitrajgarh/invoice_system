@@ -34,7 +34,7 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
       {/* PRINT AREA */}
       <div
         ref={printRef}
-        className="bg-white text-black p-10 w-[794px] min-h-[1123px] mx-auto rounded-2xl border border-gray-200 shadow-sm"
+        className="bg-white text-black p-6 md:p-10 w-full max-w-[794px] min-h-[1123px] mx-auto rounded-2xl border border-gray-200 shadow-sm"
       >
 
         {/* HEADER */}
