@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { ChangeEvent } from "react";
 import { X, Upload } from "lucide-react";
 import { InvoiceData } from "@/lib/types";
+import Image from "next/image";
 
 interface Props {
   data: InvoiceData;
@@ -44,18 +44,18 @@ export default function CompanyForm({ data, setData }: Props) {
   };
 
   return (
-    <div className="mb-6 p-5 bg-white rounded-2xl shadow border border-gray-100">
+    <div className="mb-6 p-5 bg-white text-black rounded-2xl shadow border border-gray-200">
+
       <h2 className="text-lg font-semibold text-[#383838] mb-4">
         Company Details
       </h2>
 
+      {/* LOGO */}
       <label className="block text-sm font-medium mb-2 text-[#383838]">
         Company Logo
       </label>
 
-      {/* CONDITION BASED UI */}
       {!data.company.logo ? (
-
         <label className="w-28 h-28 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-[#3ABBF9] transition mb-4">
           <Upload className="text-[#3ABBF9] mb-1" size={20} />
           <span className="text-xs text-gray-500">Upload</span>
@@ -68,17 +68,15 @@ export default function CompanyForm({ data, setData }: Props) {
           />
         </label>
       ) : (
-
         <div className="relative w-fit mb-4">
           <Image
             src={data.company.logo}
             alt="Company Logo"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             className="object-contain border rounded-xl p-2 bg-white"
           />
 
-          {/* REMOVE BUTTON */}
           <button
             onClick={removeLogo}
             className="absolute -top-2 -right-2 bg-[#3ABBF9] text-white rounded-full p-1 hover:scale-110 transition shadow"
@@ -88,7 +86,7 @@ export default function CompanyForm({ data, setData }: Props) {
         </div>
       )}
 
-      {/* INPUTS */}
+      {/* COMPANY NAME */}
       <input
         placeholder="Company Name"
         value={data.company.name}
@@ -97,13 +95,16 @@ export default function CompanyForm({ data, setData }: Props) {
             ...data,
             company: {
               ...data.company,
-              name: e.target.value
-            }
+              name: e.target.value,
+            },
           })
         }
-        className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
+        className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
       />
 
+      {/* ADDRESS */}
       <input
         placeholder="Address"
         value={data.company.address}
@@ -112,13 +113,16 @@ export default function CompanyForm({ data, setData }: Props) {
             ...data,
             company: {
               ...data.company,
-              address: e.target.value
-            }
+              address: e.target.value,
+            },
           })
         }
-        className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
+        className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
       />
 
+      {/* EMAIL */}
       <input
         placeholder="Email"
         value={data.company.email}
@@ -127,13 +131,16 @@ export default function CompanyForm({ data, setData }: Props) {
             ...data,
             company: {
               ...data.company,
-              email: e.target.value
-            }
+              email: e.target.value,
+            },
           })
         }
-        className="w-full p-3 mb-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
+        className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
       />
 
+      {/* PHONE */}
       <input
         placeholder="Phone"
         value={data.company.phone}
@@ -142,11 +149,31 @@ export default function CompanyForm({ data, setData }: Props) {
             ...data,
             company: {
               ...data.company,
-              phone: e.target.value
-            }
+              phone: e.target.value,
+            },
           })
         }
-        className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#3ABBF9]"
+        className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+      />
+
+      {/* WEBSITE */}
+      <input
+        placeholder="Company Website"
+        value={data.company.website || ""}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              website: e.target.value,
+            },
+          })
+        }
+        className="w-full p-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
       />
     </div>
   );
