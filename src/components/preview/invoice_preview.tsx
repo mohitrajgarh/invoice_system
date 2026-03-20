@@ -32,6 +32,8 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
               <Image
                 src={data.company.logo}
                 alt="company logo"
+                width={50}
+                height={50}
                 className="w-[50px] h-[50px] object-contain"
               />
             )}
