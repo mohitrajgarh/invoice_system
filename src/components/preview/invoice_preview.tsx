@@ -1,9 +1,17 @@
 "use client";
 
-import Image from "next/image";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 import { InvoiceData } from "@/lib/types";
+import Image from "next/image";
 
 export default function InvoicePreview({ data }: { data: InvoiceData }) {
+  const printRef = useRef<HTMLDivElement>(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: "invoice",
+  });
   const gstAmount =
     (data.billing.amount * data.billing.gst) / 100;
 
@@ -11,152 +19,114 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
     data.billing.amount + gstAmount - data.billing.discount;
 
   return (
-    <div id="invoice-preview" className="max-w-[800px] mx-auto">
-      <div className="bg-white p-8 rounded-2xl shadow border border-gray-100">
-
+    <>
+      {/* PRINT AREA */}
+      <div
+        ref={printRef}
+        className="bg-white p-10 w-[794px] min-h-[1123px] mx-auto shadow rounded-xl"
+      >
         {/* HEADER */}
         <div className="flex justify-between items-start border-b pb-6 mb-6">
           <div className="flex items-center gap-3">
             {data.company.logo && (
               <Image
                 src={data.company.logo}
-                alt="logo"
-                width={50}
-                height={50}
-                className="object-contain"
+                alt="company logo"
+                className="w-[50px] h-[50px] object-contain"
               />
             )}
 
             <div>
               <h2 className="text-xl font-bold text-[#3ABBF9]">
-                {data.company.name || "Company Name"}
+                {data.company.name}
               </h2>
-              <p className="text-sm text-gray-600">
-                {data.company.address}
-              </p>
-              <p className="text-sm text-gray-600">
-                {data.company.email}
-              </p>
-              <p className="text-sm text-gray-600">
-                {data.company.phone}
-              </p>
+              <p className="text-sm">{data.company.address}</p>
+              <p className="text-sm">{data.company.email}</p>
+              <p className="text-sm">{data.company.phone}</p>
             </div>
           </div>
 
           <div className="text-right">
-            <h2 className="text-lg font-bold text-[#383838]">
-              INVOICE
-            </h2>
-            <p className="text-sm">
-              #{data.invoice.number || "0001"}
-            </p>
-            <p className="text-sm">
-              {data.invoice.date}
-            </p>
+            <h2 className="text-lg font-bold">INVOICE</h2>
+            <p>#{data.invoice.number}</p>
+            <p>{data.invoice.date}</p>
           </div>
         </div>
 
         {/* CLIENT */}
         <div className="mb-6">
-          <h3 className="font-semibold text-[#383838] mb-1">
-            Bill To:
-          </h3>
-          <p>{data.client.name || "Client Name"}</p>
-          <p className="text-sm text-gray-600">
-            {data.client.phone}
-          </p>
+          <h3 className="font-semibold mb-1">Bill To:</h3>
+          <p>{data.client.name}</p>
+          <p>{data.client.phone}</p>
         </div>
 
-        {/* BILLING TABLE */}
-        <div className="mb-6">
-          <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
-            <thead className="bg-[#F9FAFB] text-gray-600">
-              <tr>
-                <th className="p-3 text-left text-sm font-semibold">
-                  Service
-                </th>
-                <th className="p-3 text-right text-sm font-semibold">
-                  Amount
-                </th>
-              </tr>
-            </thead>
+        {/* TABLE */}
+        <table className="w-full border">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="p-3 text-left">Service</th>
+              <th className="p-3 text-right">Amount</th>
+            </tr>
+          </thead>
 
-            <tbody>
-              <tr className="border-t">
-                <td className="p-3">
-                  {data.billing.service || "Service"}
-                </td>
-                <td className="p-3 text-right">
-                  ₹{data.billing.amount}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <tbody>
+            <tr>
+              <td className="p-3">{data.billing.service}</td>
+              <td className="p-3 text-right">
+                ₹{data.billing.amount}
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-        {/* CALCULATION */}
-        <div className="flex justify-end mb-6">
+        {/* TOTAL */}
+        <div className="flex justify-end mt-6">
           <div className="w-64 space-y-2">
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between">
               <span>Subtotal</span>
               <span>₹{data.billing.amount}</span>
             </div>
 
-            <div className="flex justify-between text-sm">
-              <span>GST ({data.billing.gst}%)</span>
+            <div className="flex justify-between">
+              <span>GST</span>
               <span>₹{gstAmount}</span>
             </div>
 
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between">
               <span>Discount</span>
               <span>- ₹{data.billing.discount}</span>
             </div>
 
-            <div className="flex justify-between font-bold text-lg border-t pt-2">
+            <div className="flex justify-between font-bold border-t pt-2">
               <span>Total</span>
-              <span className="text-[#3ABBF9]">
-                ₹{total}
-              </span>
+              <span>₹{total}</span>
             </div>
           </div>
         </div>
 
         {/* PAYMENT */}
-        <div className="border-t pt-6 mb-6">
-          <h3 className="font-semibold text-[#383838] mb-2">
-            Payment Details
-          </h3>
-
-          <p className="text-sm">
-            Status:{" "}
-            <span
-              className={`font-semibold ${
-                data.payment.status === "Paid"
-                  ? "text-green-600"
-                  : "text-red-500"
-              }`}
-            >
-              {data.payment.status}
-            </span>
-          </p>
-
-          <p className="text-sm text-gray-600">
-            {data.payment.details}
-          </p>
+        <div className="mt-6 border-t pt-4">
+          <p>Status: {data.payment.status}</p>
+          <p>{data.payment.details}</p>
         </div>
 
         {/* NOTES */}
         {data.notes && (
-          <div className="border-t pt-6">
-            <h3 className="font-semibold text-[#383838] mb-2">
-              Notes
-            </h3>
-            <p className="text-sm text-gray-600">
-              {data.notes}
-            </p>
+          <div className="mt-6 border-t pt-4">
+            <p>{data.notes}</p>
           </div>
         )}
       </div>
-    </div>
+
+      {/* BUTTON */}
+      <div className="flex justify-end mt-4">
+        <button
+          onClick={handlePrint}
+          className="bg-[#3ABBF9] text-white px-4 py-2 rounded-xl"
+        >
+          Download PDF
+        </button>
+      </div>
+    </>
   );
 }

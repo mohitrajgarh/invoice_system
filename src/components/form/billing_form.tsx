@@ -46,7 +46,6 @@ export default function BillingForm({ data, setData }: Props) {
 
             <input
                 type="number"
-                defaultValue={18}
                 placeholder="GST %"
                 value={data.billing.gst}
                 onChange={(e) =>
