@@ -30,6 +30,7 @@ export interface InvoiceData {
         }[];
         gst: number;
         discount: number;
+        discountType: "percent" | "fixed";
 
     };
     payment: {

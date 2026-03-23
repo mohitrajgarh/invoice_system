@@ -35,3 +35,8 @@ body {
   scrollbar-width: none;     /* Firefox */
 }
 
+@media print {
+  .print\:break-after-page {
+    page-break-after: always;
+  }
+}
