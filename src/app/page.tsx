@@ -3,6 +3,7 @@
 import InvoiceForm from "@/components/form/Invoice_form";
 import InvoicePreview from "@/components/preview/invoice_preview";
 import { InvoiceData } from "@/lib/types";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
 export default function InvoicePage() {
@@ -53,12 +54,15 @@ export default function InvoicePage() {
           TechHertz Invoice System
         </h1>
 
-        <button
-          onClick={() => setShowPreview(!showPreview)}
-          className="mt-4 bg-[#3ABBF9] text-white px-4 py-2 rounded-lg"
-        >
-          {showPreview ? "Close Preview" : "Preview"}
-        </button>
+        <div className="w-full flex justify-end">
+          <button
+            onClick={() => setShowPreview(!showPreview)}
+            className="mt-4 flex items-center gap-2 bg-[#3ABBF9] text-white px-4 py-2 rounded-lg shadow hover:opacity-90 transition"
+          >
+            {showPreview ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showPreview ? "Close Preview" : "Preview"}
+          </button>
+        </div>
       </div>
 
       {/* MAIN GRID */}
@@ -69,7 +73,7 @@ export default function InvoicePage() {
         `}
       >
 
-        {/* 🟢 FORM */}
+        {/* FORM */}
         <div
           className={`
             w-full
@@ -83,7 +87,7 @@ export default function InvoicePage() {
           />
         </div>
 
-        {/* 🔵 PREVIEW */}
+        {/* PREVIEW */}
         {showPreview && (
           <div className="w-full lg:sticky top-6 self-start">
             <InvoicePreview data={data} />

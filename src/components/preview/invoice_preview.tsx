@@ -11,6 +11,7 @@ import Totals from "./parts/totals";
 import Payment from "./parts/payment";
 import Notes from "./parts/notes";
 import ThankYou from "./parts/thankyou";
+import { Download } from "lucide-react";
 
 export default function InvoicePreview({ data }: { data: InvoiceData }) {
   const printRef = useRef<HTMLDivElement>(null);
@@ -99,9 +100,10 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
       <div className="flex justify-center md:justify-end mt-6 max-w-[794px] mx-auto px-2">
         <button
           onClick={handlePrint}
-          className="w-full md:w-auto bg-[#3ABBF9] text-white px-5 py-2 rounded-xl shadow hover:opacity-90 transition"
+          className="w-full md:w-auto flex items-center justify-center gap-2 bg-[#3ABBF9] text-white px-5 py-2 rounded-xl shadow hover:opacity-90 transition"
         >
-          Download PDF
+          <Download size={18} />
+          Generate Bill
         </button>
       </div>
     </>
