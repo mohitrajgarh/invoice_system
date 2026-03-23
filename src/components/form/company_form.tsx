@@ -171,6 +171,23 @@ export default function CompanyForm({ data, setData }: Props) {
             },
           })
         }
+        className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+      />
+      {/* Company GST Numbber */}
+      <input
+        placeholder="Company GST Number"
+        value={data.company.gstNumber || ""}
+        onChange={(e) =>
+          setData({
+            ...data,
+            company: {
+              ...data.company,
+              gstNumber: e.target.value,
+            },
+          })
+        }
         className="w-full p-3 border border-gray-300 rounded-xl 
         placeholder:text-gray-400
         focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"

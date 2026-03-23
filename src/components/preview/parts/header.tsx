@@ -30,6 +30,7 @@ export default function Header({ data }: Props) {
               {data.company.email} | {data.company.phone}
             </p>
             <p className="text-xs text-gray-400">{data.company.website}</p>
+            <p className="text-xs text-gray-700">GST: {data.company.gstNumber || "-"}</p>
           </div>
         </div>
 
@@ -40,6 +41,7 @@ export default function Header({ data }: Props) {
           <p className="text-xs text-gray-400">
             Due: {data.invoice.dueDate}
           </p>
+          <p className="text-sm text-gray-600">Customer ID: {data.invoice.customerId || "-"}</p>
         </div>
 
       </div>

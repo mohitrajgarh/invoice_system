@@ -21,7 +21,6 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
     documentTitle: "invoice",
   });
 
-  // CALCULATIONS
   const subtotal = data.billing.items.reduce(
     (acc, item) => acc + item.amount,
     0
@@ -29,11 +28,7 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
 
   const taxAmount = (subtotal * data.billing.gst) / 100;
 
-  const discountAmount =
-    data.billing.discountType === "percent"
-      ? (subtotal * data.billing.discount) / 100
-      : data.billing.discount;
-
+  const discountAmount = (subtotal * data.billing.discount) / 100;
   const total = subtotal + taxAmount - discountAmount;
 
   const formatCurrency = (n: number) =>
@@ -79,7 +74,7 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
                 <Totals
                   subtotal={subtotal}
                   tax={taxAmount}
-                  discount={discountAmount} 
+                  discount={discountAmount}
                   total={total}
                   gst={data.billing.gst}
                   formatCurrency={formatCurrency}

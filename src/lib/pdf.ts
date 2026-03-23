@@ -7,10 +7,10 @@ export const downloadPDF = async () => {
   const html2canvas = (await import("html2canvas")).default;
   const jsPDF = (await import("jspdf")).default;
 
-  // 🔥 CLONE NODE
+  // CLONE NODE
   const cloned = element.cloneNode(true) as HTMLElement;
 
-  // 🔥 FORCE SAFE COLORS (VERY IMPORTANT)
+  //  FORCE SAFE COLORS (VERY IMPORTANT)
   const allElements = cloned.querySelectorAll("*");
 
   allElements.forEach((el) => {

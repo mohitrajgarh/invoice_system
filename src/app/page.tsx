@@ -17,6 +17,7 @@ export default function InvoicePage() {
       phone: "",
       logo: "",
       website: "",
+      gstNumber: "",
     },
     client: {
       name: "",
@@ -25,6 +26,7 @@ export default function InvoicePage() {
       email: "",
       phone: "",
       client_website: "",
+      client_gstNumber: "",
     },
     invoice: {
       number: "",
@@ -33,10 +35,16 @@ export default function InvoicePage() {
       customerId: "",
     },
     billing: {
-      items: [{ service: "", amount: 0 }],
+      items: [{
+        service: "",
+        amount: 0,
+        rate: 0,
+        quantity: 1,
+
+      }],
       gst: 18,
       discount: 0,
-      discountType: "percent",
+
     },
     payment: {
       status: "Pending",

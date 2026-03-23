@@ -6,6 +6,7 @@ export interface InvoiceData {
         phone: string;
         logo?: string;
         website: string;
+        gstNumber: string;
     };
     client: {
         name: string;
@@ -14,6 +15,7 @@ export interface InvoiceData {
         email: string;
         phone: string;
         client_website: string;
+        client_gstNumber: string;
     };
 
     invoice: {
@@ -26,11 +28,13 @@ export interface InvoiceData {
     billing: {
         items: {
             service: string;
+            quantity:number;
+            rate:number;
             amount: number;
         }[];
         gst: number;
         discount: number;
-        discountType: "percent" | "fixed";
+        
 
     };
     payment: {

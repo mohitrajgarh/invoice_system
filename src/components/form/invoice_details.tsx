@@ -35,7 +35,7 @@ export default function InvoiceDetails({ data, setData }: Props) {
 
       {/* CUSTOMER ID */}
       <input
-        placeholder="Customer ID"
+        placeholder="Customer ID (e.g CUST-001)"
         value={data.invoice.customerId}
         onChange={(e) =>
           setData({

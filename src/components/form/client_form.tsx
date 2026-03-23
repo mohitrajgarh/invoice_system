@@ -119,7 +119,25 @@ export default function ClientForm({ data, setData }: Props) {
                         },
                     })
                 }
-                className="w-full p-3 border border-gray-300 rounded-xl 
+                className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
+        placeholder:text-gray-400
+        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+            />
+
+            {/* Client GST Number */}
+            <input
+                placeholder="Client GST Number"
+                value={data.client.client_gstNumber || ""}
+                onChange={(e) =>
+                    setData({
+                        ...data,
+                        client: {
+                            ...data.client,
+                            client_gstNumber: e.target.value
+                        }
+                    })
+                }
+                className="w-full p-3 mb-3 border border-gray-300 rounded-xl 
         placeholder:text-gray-400
         focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
             />
