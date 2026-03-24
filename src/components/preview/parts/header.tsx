@@ -65,8 +65,8 @@ export default function Header({ data }: Props) {
             Due: {data.invoice.dueDate}
           </p>
 
-          <p className="text-[10px] sm:text-sm text-gray-600">
-            Customer ID: {data.invoice.customerId}
+          <p className="text-[10px] sm:text-sm text-gray-600 whitespace-nowrap  ">
+            Cust ID: {data.invoice.customerId || ""} 
           </p>
         </div>
 

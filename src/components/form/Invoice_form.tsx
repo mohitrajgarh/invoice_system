@@ -22,12 +22,13 @@ export default function InvoiceForm({ data, setData, showPreview }: Pros) {
             {/* LEFT */}
             <div className="space-y-6">
                 <CompanyForm data={data} setData={setData} />
-                <ClientForm data={data} setData={setData} />
+                <InvoiceDetails data={data} setData={setData} />
+                
             </div>
 
             {/* RIGHT */}
             <div className="space-y-6">
-                <InvoiceDetails data={data} setData={setData} />
+                <ClientForm data={data} setData={setData} />
                 <BillingForm data={data} setData={setData} />
                 <PaymentForm data={data} setData={setData} />
             </div>
