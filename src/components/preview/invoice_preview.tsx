@@ -57,7 +57,9 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
         {pages.map((items, index) => (
           <div
             key={index}
-            className="bg-white text-black p-4 md:p-8 w-full max-w-[794px] mx-auto mb-6 print:mb-0 print:break-after-page border border-gray-200 rounded-xl"
+            className="
+            bg-white text-black w-full max-w-[794px] mx-auto px-3 sm:px-4 md:px-8 py-4 mb-6 print:mb-0 print:break-after-page  border border-gray-200 rounded-xl  overflow-hidden
+            "
           >
             {/* HEADER */}
             <Header data={data} />

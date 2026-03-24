@@ -127,7 +127,7 @@ export default function ClientForm({ data, setData }: Props) {
             {/* Client GST Number */}
             <input
                 placeholder="Client GST Number"
-                value={data.client.client_gstNumber || ""}
+                value={data.client.client_gstNumber}
                 onChange={(e) =>
                     setData({
                         ...data,

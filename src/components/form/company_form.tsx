@@ -178,7 +178,7 @@ export default function CompanyForm({ data, setData }: Props) {
       {/* Company GST Numbber */}
       <input
         placeholder="Company GST Number"
-        value={data.company.gstNumber || ""}
+        value={data.company.gstNumber}
         onChange={(e) =>
           setData({
             ...data,

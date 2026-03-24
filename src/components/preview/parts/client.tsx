@@ -18,7 +18,7 @@ export default function Client({ data }: Props) {
                 <p className="text-sm text-gray-600">
                     {data.client.email} | {data.client.phone}
                 </p>
-                <p className=" text-sm text-gray-600">GST: {data.client.client_gstNumber || "-"}</p>
+                <p className=" text-sm text-gray-600">{data.client.client_gstNumber}</p>
             </div>
         </div>
     );
