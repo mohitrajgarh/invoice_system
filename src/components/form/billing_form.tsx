@@ -9,9 +9,9 @@ interface Props {
 
 export default function BillingForm({ data, setData }: Props) {
   return (
-    <div className="mb-6 p-5 bg-white text-black rounded-2xl shadow border border-gray-200">
+    <div className="mb-5 p-4 bg-white text-black rounded-xl shadow border border-gray-200">
 
-      <h2 className="text-lg font-semibold text-[#383838] mb-4">
+      <h2 className="text-base font-semibold text-[#383838] mb-3">
         Billing Details
       </h2>
 
@@ -19,12 +19,12 @@ export default function BillingForm({ data, setData }: Props) {
       {data.billing.items.map((item, index) => (
         <div
           key={index}
-          className="mb-5 p-4 border border-gray-200 rounded-2xl bg-white shadow-sm"
+          className="mb-5 p-3 border border-gray-200 rounded-lg bg-white shadow-sm"
         >
 
           {/* SERVICE */}
           <div className="mb-3">
-            <label className="text-xs text-gray-500 mb-1 block">
+            <label className="text-[11px] text-gray-500 mb-1 block">
               Service Name
             </label>
 
@@ -40,9 +40,8 @@ export default function BillingForm({ data, setData }: Props) {
                   billing: { ...data.billing, items: updated },
                 });
               }}
-              className="w-full p-3 border border-gray-300 rounded-xl 
-        placeholder:text-gray-400 
-        focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+              className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md 
+                 focus:outline-none focus:border-[#3ABBF9] focus:ring-1 focus:ring-[#3ABBF9]/40"
             />
           </div>
 
@@ -51,7 +50,7 @@ export default function BillingForm({ data, setData }: Props) {
 
             {/* Quantity */}
             <div>
-              <label className="text-xs text-gray-500 mb-1 block">
+              <label className="text-[11px] text-gray-500 mb-1 block">
                 Quantity
               </label>
 
@@ -71,15 +70,14 @@ export default function BillingForm({ data, setData }: Props) {
                     billing: { ...data.billing, items: updated },
                   });
                 }}
-                className="w-full p-3 border border-gray-300 rounded-xl 
-          placeholder:text-gray-400 
-          focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+                className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md 
+                 focus:outline-none focus:border-[#3ABBF9] focus:ring-1 focus:ring-[#3ABBF9]/40"
               />
             </div>
 
             {/* Rate */}
             <div>
-              <label className="text-xs text-gray-500 mb-1 block">
+              <label className="text-[11px] text-gray-500 mb-1 block">
                 Rate (₹)
               </label>
 
@@ -99,9 +97,8 @@ export default function BillingForm({ data, setData }: Props) {
                     billing: { ...data.billing, items: updated },
                   });
                 }}
-                className="w-full p-3 border border-gray-300 rounded-xl 
-          placeholder:text-gray-400 
-          focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+                className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md 
+                 focus:outline-none focus:border-[#3ABBF9] focus:ring-1 focus:ring-[#3ABBF9]/40"
               />
             </div>
 
@@ -109,7 +106,7 @@ export default function BillingForm({ data, setData }: Props) {
 
           {/* AMOUNT */}
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">
+            <label className="text-[11px] text-gray-500 mb-1 block">
               Amount
             </label>
 
@@ -117,8 +114,11 @@ export default function BillingForm({ data, setData }: Props) {
               type="number"
               value={item.amount || ""}
               readOnly
-              className="w-full p-3 border border-[#3ABBF9]/30 bg-[#3ABBF9]/5 rounded-xl 
-        font-semibold text-[#383838]"
+              className="w-full h-10 px-3 text-sm rounded-md 
+                border border-[#3ABBF9]/30 
+                bg-[#3ABBF9]/10 
+                text-gray-800 font-semibold
+                focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/30"
             />
           </div>
 
@@ -133,8 +133,8 @@ export default function BillingForm({ data, setData }: Props) {
                   billing: { ...data.billing, items: updated },
                 });
               }}
-              className="mt-3 text-sm font-medium text-red-500 hover:text-red-600 transition"
-              >
+              className="mt-3 text-[11px] font-medium text-red-500 hover:text-red-600 transition"
+            >
               Delete
             </button>
           )}
@@ -160,9 +160,13 @@ export default function BillingForm({ data, setData }: Props) {
               },
             })
           }
-          className="w-full p-3 border border-gray-300 rounded-xl 
-          placeholder:text-gray-400
-          focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+          className="w-full h-10 px-3 text-sm rounded-md 
+              border border-gray-300 
+              placeholder:text-gray-400 
+              focus:outline-none 
+              focus:border-[#3ABBF9] 
+              focus:ring-1 focus:ring-[#3ABBF9]/30 
+              transition-all duration-150"
         />
 
         {/* DISCOUNT ONLY % */}
@@ -180,9 +184,13 @@ export default function BillingForm({ data, setData }: Props) {
               },
             })
           }
-          className="w-full p-3 border border-gray-300 rounded-xl 
-          placeholder:text-gray-400
-          focus:outline-none focus:ring-1 focus:ring-[#3ABBF9]/60 focus:border-[#3ABBF9]"
+          className="w-full h-10 px-3 text-sm rounded-md 
+            border border-gray-300 
+            placeholder:text-gray-400
+            focus:outline-none 
+            focus:border-[#3ABBF9] 
+            focus:ring-1 focus:ring-[#3ABBF9]/30 
+            transition-all duration-150"
         />
 
       </div>
@@ -201,8 +209,8 @@ export default function BillingForm({ data, setData }: Props) {
             },
           })
         }
-        className="mt-5 w-full border border-dashed border-[#3ABBF9] text-[#3ABBF9] 
-        py-2 rounded-xl hover:bg-[#3ABBF9]/10 transition text-sm font-medium"
+        className="mt-5 w-full h-10 border border-dashed border-[#3ABBF9] text-[#3ABBF9] 
+         rounded-md text-sm font-medium hover:bg-[#3ABBF9]/10 transition-all duration-150 hover:border-[#3ABBF9] hover:text-[#3ABBF9]"
       >
         + Add Service
       </button>

@@ -15,19 +15,19 @@ export default function InvoiceForm({ data, setData, showPreview }: Pros) {
     return (
         <div
             className={`
-        grid gap-6 
+        grid gap-5
         ${showPreview ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-2"}
       `}
         >
             {/* LEFT */}
-            <div className="space-y-6">
+            <div className=" space-y-5">
                 <CompanyForm data={data} setData={setData} />
                 <InvoiceDetails data={data} setData={setData} />
                 
             </div>
 
             {/* RIGHT */}
-            <div className="space-y-6">
+            <div className="space-y-5">
                 <ClientForm data={data} setData={setData} />
                 <BillingForm data={data} setData={setData} />
                 <PaymentForm data={data} setData={setData} />
